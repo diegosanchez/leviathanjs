@@ -14,6 +14,22 @@ module.exports = function(grunt) {
 	// Project Configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		locales: {
+			options: {
+				locales: ['en_US', 'es_ES']
+			},
+			update: {
+				src: [
+					'public/**/*.html',
+					'app/views/*.html'
+				],
+				dest: 'locales/{locale}/i18n.json'
+			},
+			build: {
+				src: 'locales/**/i18n.json',
+				dest: 'public/modules/locales/i18n.js'
+			}
+		},
 		watch: {
 			serverViews: {
 				files: watchFiles.serverViews,
@@ -153,6 +169,9 @@ module.exports = function(grunt) {
 		grunt.config.set('applicationJavaScriptFiles', config.assets.js);
 		grunt.config.set('applicationCSSFiles', config.assets.css);
 	});
+
+	// Gathering localization information
+	grunt.loadNpmTasks('grunt-locales');
 
 	// Default task(s).
 	grunt.registerTask('default', ['lint', 'concurrent:default']);

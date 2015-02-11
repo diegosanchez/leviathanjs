@@ -18,7 +18,7 @@ var ApplicationConfiguration = (function() {
 		var app = angular.module(applicationModuleName);
 		app.requires.push(moduleName);
 
-    app.value('localeSupported', [ 'es-AR' ]);
+    	app.value('localeSupported', [ 'es-AR' ]);
 
 	};
 
